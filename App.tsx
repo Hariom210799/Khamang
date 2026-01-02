@@ -1,45 +1,47 @@
 /**
- * Sample React Native App
+ * Khamang - Food Delivery App
  * https://github.com/facebook/react-native
  *
  * @format
  */
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
+import React from 'react';
+import * as eva from '@eva-design/eva';
 import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
+  ApplicationProvider,
+  IconRegistry,
+} from '@ui-kitten/components';
+import {EvaIconsPack} from '@ui-kitten/eva-icons';
+import { FeatherIconsPack } from './src/assets/icons/feather-icons';
+import { MaterialIconsPack } from './src/assets/icons/material-icons';
+import {default as theme} from './src/assets/themes/custom-theme.json';
+import {default as mapping} from './src/assets/themes/mapping.json';
+import configureStore from './src/redux-store';
+import {Provider} from 'react-redux';
+import AppNavigator from './src/routes/app-navigator';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {StatusBar} from 'react-native';
+
+const store = configureStore();
+
+// Reset Redux state on every app start
+store.dispatch({ type: 'LOG_USER_OUT' });
 
 function App() {
-  const isDarkMode = useColorScheme() === 'dark';
-
   return (
     <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
+      <StatusBar barStyle="dark-content" />
+      <Provider store={store}>
+        <IconRegistry icons={[EvaIconsPack, FeatherIconsPack, MaterialIconsPack]} />
+        <ApplicationProvider
+          {...eva}
+          theme={{...eva.light, ...theme}}
+          customMapping={mapping}>
+          <AppNavigator />
+        </ApplicationProvider>
+      </Provider>
     </SafeAreaProvider>
   );
 }
-
-function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
-
-  return (
-    <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default App;

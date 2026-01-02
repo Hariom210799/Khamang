@@ -1,0 +1,192 @@
+[
+  {
+    "title": "Starters",
+    "dishes": [
+      {
+        "name": "Masala Papad",
+        "available": false,
+        "description": "Made with love for foodies"
+      },
+      {
+        "name": "Oats",
+        "available": false,
+        "description": "Made with love for foodies"
+      },
+      {
+        "name": "Banana Chips",
+        "available": false,
+        "description": "Made with love for foodies"
+      }
+    ]
+  },
+  {
+    "title": "Pickels and Chutneys",
+    "dishes": [
+      {
+        "name": "Mango Pickle",
+        "available": true,
+        "description": "Made with love for foodies"
+      },
+      {
+        "name": "Jawas Chutney",
+        "available": false,
+        "description": "Made with love for foodies"
+      },
+      {
+        "name": "Groundnut Chutney",
+        "available": false,
+        "description": "Made with love for foodies"
+      }
+    ]
+  },
+  {
+    "title": "Breads",
+    "dishes": [
+      {
+        "name": "Chapati",
+        "available": false,
+        "description": "Made with love for foodies"
+      },
+      {
+        "name": "Bhakri",
+        "available": false,
+        "description": "Made with love for foodies"
+      },
+      {
+        "name": "Phulka",
+        "available": false,
+        "description": "Made with love for foodies"
+      }
+    ]
+  },
+  {
+    "title": "Main Course",
+    "dishes": [
+      {
+        "name": "Bhendi Masala",
+        "available": false,
+        "description": "Made with love for foodies"
+      },
+      {
+        "name": "Dal Curry",
+        "available": false,
+        "description": "Made with love for foodies"
+      }
+    ]
+  },
+  {
+    "title": "Rice",
+    "dishes": [
+      {
+        "name": "Plain Rice",
+        "available": false,
+        "description": "Made with love for foodies"
+      },
+      {
+        "name": "Pulao",
+        "available": false,
+        "description": "Made with love for foodies"
+      },
+      {
+        "name": "Masala Rice",
+        "available": false,
+        "description": "Made with love for foodies"
+      }
+    ]
+  },
+  {
+    "title": "Snacks",
+    "dishes": [
+      {
+        "name": "French Fries",
+        "available": false,
+        "description": "Made with love for foodies"
+      },
+      {
+        "name": "Kaande Bhaje",
+        "available": false,
+        "description": "Made with love for foodies"
+      },
+      {
+        "name": "Baked Papad",
+        "available": false,
+        "description": "Made with love for foodies"
+      }
+    ]
+  },
+  {
+    "title": "Salads",
+    "dishes": [
+      {
+        "name": "Mix Salad",
+        "available": false,
+        "description": "Made with love for foodies"
+      },
+      {
+        "name": "Onion Salad",
+        "available": false,
+        "description": "Made with love for foodies"
+      }
+    ]
+  },
+  {
+    "title": "My New Category",
+    "dishes": [
+      {
+        "name": "Mango Pickle",
+        "available": false,
+        "description": "Made with love for foodies"
+      },
+      {
+        "name": "Jawas Chutney",
+        "available": false,
+        "description": "Made with love for foodies"
+      },
+      {
+        "name": "Groundnut Chutney",
+        "available": false,
+        "description": "Made with love for foodies"
+      }
+    ]
+  },
+  {
+    "title": "My New Category",
+    "dishes": [
+      {
+        "name": "Mango Pickle",
+        "available": false,
+        "description": "Made with love for foodies"
+      },
+      {
+        "name": "Jawas Chutney",
+        "available": false,
+        "description": "Made with love for foodies"
+      },
+      {
+        "name": "Groundnut Chutney",
+        "available": false,
+        "description": "Made with love for foodies"
+      }
+    ]
+  },
+  {
+    "title": "My New Category",
+    "dishes": [
+      {
+        "name": "Mango Pickle",
+        "available": false,
+        "description": "Made with love for foodies"
+      },
+      {
+        "name": "Jawas Chutney",
+        "available": false,
+        "description": "Made with love for foodies"
+      },
+      {
+        " name": "Groundnut Chutney",
+        "available": false,
+        "description": "Made with love for foodies"
+      }
+    ]
+  }
+]
