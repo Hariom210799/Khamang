@@ -21,6 +21,7 @@ import {ImageOverlay} from './extra/image-overlay.component';
 import {logUser} from '../../redux-store/actions';
 import jwt_decode from 'jwt-decode';
 import {useDispatch} from 'react-redux';
+import API_CONFIG from '../../config/api';
 
 export default ({navigation}) => {
   const [email, setEmail] = React.useState();
@@ -46,7 +47,7 @@ export default ({navigation}) => {
 
   var config = {
     method: 'post',
-    url: 'http://10.0.2.2:3000/api/v1/users/login',
+    url: API_CONFIG.LOGIN,
     headers: {
       'Content-Type': 'application/json',
     },
@@ -68,7 +69,7 @@ export default ({navigation}) => {
         try {
           // Fetch full user profile
           const userRes = await axios.get(
-            `http://10.0.2.2:3000/api/v1/users/${decoded.id}`,
+            API_CONFIG.GET_USER(decoded.id),
           );
           
           const user = userRes.data.user;

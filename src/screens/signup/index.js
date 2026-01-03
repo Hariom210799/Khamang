@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, ScrollView, Dimensions} from 'react-native';
 import axios from 'react-native-axios';
+import API_CONFIG from '../../config/api';
 import {
   Button,
   CheckBox,
@@ -123,7 +124,7 @@ export default ({navigation}) => {
   const windowHeight = Dimensions.get('window').height;
   var config = {
     method: 'post',
-    url: 'http://10.0.2.2:3000/api/v1/users/signup',
+    url: API_CONFIG.SIGNUP,
     headers: {
       'Content-Type': 'application/json',
     },

@@ -1,4 +1,5 @@
 import React, {Component, useState, useEffect} from 'react';
+import API_CONFIG from '../../../config/api';
 import {
   Dimensions,
   View,
@@ -68,7 +69,7 @@ const {width: screenWidth} = Dimensions.get('window');
 
 var config = {
   method: 'get',
-  url: 'http://10.0.2.2:3000/api/v1/makers',
+  url: API_CONFIG.GET_MAKERS,
   headers: {
     // 'Content-Type': 'application/json',
   },
