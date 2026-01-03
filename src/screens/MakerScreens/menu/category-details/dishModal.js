@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useMemo} from 'react';
 import {View, StyleSheet, KeyboardAvoidingView, Platform, ScrollView, Image, Text as RNText, ActivityIndicator, TouchableOpacity} from 'react-native';
+import API_CONFIG from '../../../../config/api';
 import ImagePickerButton from './ImagePickerButton';
 import {CloseIcon} from '../extras/icons';
 import {ITEM_WIDTH, ITEM_HEIGHT} from '../../../../utils/dimensions';

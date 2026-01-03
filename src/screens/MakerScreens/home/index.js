@@ -268,7 +268,7 @@ const Home = () => {
       // Then update API in background
       axios({
         method: 'patch',
-        url: `http://10.0.2.2:3000/api/v1/orders/${orderId}`,
+        url: API_CONFIG.GET_ORDER(orderId),
         data: {status: 'accepted'},
         headers: {'Content-Type': 'application/json'},
       }).then(response => {
@@ -304,7 +304,7 @@ const Home = () => {
       // Then update API in background
       axios({
         method: 'patch',
-        url: `http://10.0.2.2:3000/api/v1/orders/${orderId}`,
+        url: API_CONFIG.GET_ORDER(orderId),
         data: {status: 'rejected'},
         headers: {'Content-Type': 'application/json'},
       }).then(response => {
