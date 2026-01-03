@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: khamang-api
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node src/server/server.js
+    envVars:
+      - key: DATABASE
+        scope: SERVICE
+        value: mongodb+srv://Har_2107:Hariom_210799@cluster0.m7py0pc.mongodb.net/khamangdb?appName=Cluster0
+      - key: JWT_SECRET
+        scope: SERVICE
+        value: khamang_jwt_secret_key_2024
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: NODE_ENV
+        value: production
+      - key: SENDGRID_API_KEY
+        value: SG.your_sendgrid_key
+      - key: CLOUDINARY_CLOUD_NAME
+        value: dziah8jmx
+      - key: CLOUDINARY_API_KEY
+        value: 654922828333553
+      - key: CLOUDINARY_API_SECRET
+        value: lC0HT3iR0_Fksey8vdUE5pLHwbg

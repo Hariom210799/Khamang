@@ -3,12 +3,12 @@
  * This file manages all API endpoints for the app
  * 
  * For development: Uses local backend
- * For production: Uses deployed backend server
+ * For production: Uses deployed backend server (Render)
  */
 
-// ⚠️ CHANGE THIS TO YOUR PRODUCTION SERVER URL
-// Example: 'https://api.khamang.com' or 'https://khamang-backend.herokuapp.com'
-const PRODUCTION_API_URL = 'https://your-production-server.com'; // TODO: Update with your live server
+// PRODUCTION SERVER URL - Update this with your actual Render URL after deployment
+// Example: 'https://khamang-api.onrender.com'
+const PRODUCTION_API_URL = 'https://khamang-api.onrender.com';
 
 // Development server (for emulator/local testing)
 const DEVELOPMENT_API_URL = 'http://10.0.2.2:3000';
