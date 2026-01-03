@@ -1,5 +1,5 @@
 import React, {Component, useState, useEffect, useCallback, useRef} from 'react';
-import API_CONFIG from '../../../../config/api';
+import API_CONFIG from '../../../config/api';
 import {
   Dimensions,
   View,
