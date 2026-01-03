@@ -3,7 +3,7 @@ services:
     name: khamang-api
     env: node
     plan: free
-    buildCommand: npm ci --legacy-peer-deps || npm install --legacy-peer-deps --force
+    buildCommand: npm install
     startCommand: node src/server/server.js
     envVars:
       - key: DATABASE
