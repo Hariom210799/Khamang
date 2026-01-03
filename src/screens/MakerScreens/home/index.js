@@ -1,4 +1,5 @@
 import React, {Component, useState, useEffect, useCallback, useRef} from 'react';
+import API_CONFIG from '../../../../config/api';
 import {
   Dimensions,
   View,
@@ -74,7 +75,7 @@ const Home = () => {
       
       const response = await axios({
         method: 'get',
-        url: `http://10.0.2.2:3000/api/v1/makers/${userId}`,
+        url: API_CONFIG.GET_MAKER(userId),
         headers: {},
         timeout: 5000,
       });
@@ -140,7 +141,7 @@ const Home = () => {
 
   var config = {
     method: 'get',
-    url: 'http://10.0.2.2:3000/api/v1/orders/',
+    url: API_CONFIG.GET_ORDERS,
     headers: {},
   };
 
@@ -175,7 +176,7 @@ const Home = () => {
       console.log(`🏪 Toggling shop status to: ${newStatus ? 'OPEN' : 'CLOSED'}`);
       const response = await axios({
         method: 'patch',
-        url: `http://10.0.2.2:3000/api/v1/makers/${logged_user?.id}/shop-status`,
+        url: API_CONFIG.UPDATE_MAKER_STATUS(logged_user?.id),
         data: {shopOpen: newStatus},
         headers: {'Content-Type': 'application/json'},
       });
@@ -212,7 +213,7 @@ const Home = () => {
       try {
         const response = await axios({
           method: 'patch',
-          url: `http://10.0.2.2:3000/api/v1/orders/${orderId}`,
+          url: API_CONFIG.GET_ORDER(orderId),
           data: {status: 'rejected'},
           headers: {'Content-Type': 'application/json'},
         });
