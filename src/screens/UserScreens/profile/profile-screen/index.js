@@ -4,6 +4,7 @@ import {
   ListRenderItemInfo,
   View,
   YellowBox,
+  SafeAreaView,
 } from 'react-native';
 import {
   Avatar,

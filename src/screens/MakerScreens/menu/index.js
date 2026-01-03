@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useCallback, useRef} from 'react';
-import {View, StyleSheet, Dimensions, FlatList, Alert} from 'react-native';
+import {View, StyleSheet, Dimensions, FlatList, Alert, SafeAreaView, StatusBar, Platform} from 'react-native';
 import {useFocusEffect} from '@react-navigation/native';
 import {
   Divider,
@@ -17,6 +17,14 @@ import { CloseIcon, PlusIcon } from './extras/icons';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import axios from 'react-native-axios';
 import {useSelector} from 'react-redux';
+
+// ✅ Dynamic status bar padding - adapts to actual device
+const getTopPadding = () => {
+  if (Platform.OS === 'android') {
+    return (StatusBar.currentHeight || 25) + 10;
+  }
+  return 15; // iOS default
+};
 
 
 // --- COMPONENTS OUTSIDE MenuScreen ---
@@ -218,9 +226,9 @@ function MenuScreen(props) {
   );
 
   return (
-    <Layout style={styles.container} level="1">
+    <SafeAreaView style={styles.container}>
       <TopNavigation
-        style={styles.topNav}
+        style={[styles.topNav, {paddingLeft: 20, paddingTop: getTopPadding()}]}
         title="Menu"
         accessoryRight={<NewCategoryButton setCategoryModal={setCategoryModal} />}
         alignment="start"
@@ -273,7 +281,7 @@ function MenuScreen(props) {
       <Text appearance="hint" style={styles.noteText}>
         Note: Check dishes currently available with you.
       </Text>
-    </Layout>
+    </SafeAreaView>
   );
 }
 

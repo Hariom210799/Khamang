@@ -16,7 +16,7 @@ const Stack = createStackNavigator();
 
 export default function SettingsNavigator() {
   return (
-    <Stack.Navigator initialRouteName="SettingsScreen">
+    <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="SettingsScreen">
       <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
       <Stack.Screen name="EditScreen" component={EditScreen} />
       <Stack.Screen name="ProfileScreen" component={ProfileScreen} />

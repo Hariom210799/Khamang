@@ -1,7 +1,15 @@
 import React, {useState, useEffect, useMemo, useCallback, useRef} from 'react';
-import {View, StyleSheet, ScrollView, ActivityIndicator, TouchableOpacity} from 'react-native';
+import {View, StyleSheet, ScrollView, ActivityIndicator, TouchableOpacity, SafeAreaView, StatusBar, Platform} from 'react-native';
 import {Divider, Layout, Text, TopNavigation, Icon} from '@ui-kitten/components';
 import axios from 'react-native-axios';
+
+// ✅ Dynamic status bar padding - adapts to actual device
+const getTopPadding = () => {
+  if (Platform.OS === 'android') {
+    return (StatusBar.currentHeight || 25) + 10;
+  }
+  return 15; // iOS default
+};
 
 const InsightsScreen = ({navigation}) => {
   // ✅ Use ref for synchronous deduplication of fetchInsights
@@ -51,6 +59,7 @@ const InsightsScreen = ({navigation}) => {
       });
       const allOrders = response.data.data.orders || [];
       
+      console.log('📊 Full Response:', JSON.stringify(response.data));
       console.log('📊 Fetched all orders:', allOrders.length);
       
       // Calculate stats for ALL orders (for demo purposes)
@@ -76,14 +85,22 @@ const InsightsScreen = ({navigation}) => {
       isLoadingInsightsRef.current = false;
     } catch (error) {
       console.log('❌ Error fetching insights:', error?.message);
+      console.log('❌ Error details:', JSON.stringify(error));
+      console.log('❌ Error response:', error?.response?.data);
       setLoading(false);
       isLoadingInsightsRef.current = false;
     }
-  }, []);
+  }, [calculateDailyRevenue]);
 
   useEffect(() => {
     // Don't auto-load - user must click reload button
     console.log('📊 Insights screen mounted - waiting for user to click reload');
+    
+    // Cleanup: Reset the loading ref when component unmounts
+    return () => {
+      isLoadingInsightsRef.current = false;
+      console.log('📊 Insights screen unmounted - reset loading state');
+    };
   }, [navigation]);
 
   // ✅ Memoized title component
@@ -94,8 +111,7 @@ const InsightsScreen = ({navigation}) => {
   ), []);
 
   // ✅ Memoized refresh button
-  const RefreshButton = useCallback(() => {
-    const iconColor = loading ? '#CCC' : '#FFD700';
+  const RefreshButton = useMemo(() => {
     return (
       <TouchableOpacity 
         onPress={fetchInsights}
@@ -105,15 +121,16 @@ const InsightsScreen = ({navigation}) => {
         <Icon
           name={loading ? 'loader-outline' : 'refresh-outline'}
           pack="eva"
-          style={[styles.refreshIcon, {tintColor: iconColor}]}
+          style={[styles.refreshIcon, {tintColor: loading ? '#CCC' : '#FFD700'}]}
         />
       </TouchableOpacity>
     );
   }, [loading, fetchInsights]);
 
   return (
-    <Layout style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <TopNavigation
+        style={{paddingLeft: 20, paddingTop: getTopPadding()}}
         title={InsightsTitle}
         accessoryRight={RefreshButton}
         alignment="start"
@@ -211,7 +228,7 @@ const InsightsScreen = ({navigation}) => {
           </View>
         </ScrollView>
       )}
-    </Layout>
+    </SafeAreaView>
   );
 };
 

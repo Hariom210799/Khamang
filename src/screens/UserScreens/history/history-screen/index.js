@@ -27,7 +27,7 @@
 //   <ProductListScreen />
 // );
 import React, {Component} from 'react';
-import {Dimensions, View, StyleSheet} from 'react-native';
+import {Dimensions, View, StyleSheet, StatusBar, Platform} from 'react-native';
 import ProductListScreen from './product-list.component';
 import {
   Divider,
@@ -46,6 +46,14 @@ import {
 } from 'react-native-material-cards';
 import CardButton from '../../../../components/atoms/CardButton';
 
+// ✅ Dynamic status bar padding - adapts to actual device
+const getTopPadding = () => {
+  if (Platform.OS === 'android') {
+    return (StatusBar.currentHeight || 25) + 10;
+  }
+  return 15; // iOS default
+};
+
 function SearchIcon(props) {
   return <Icon {...props} name="search-outline" pack="eva" />;
 }
@@ -59,7 +67,7 @@ class OrderScreen extends Component {
     return (
       <>
         <TopNavigation
-          style={{paddingLeft: 20}}
+          style={{paddingLeft: 20, paddingTop: getTopPadding()}}
           title={(TextProps) => {
             return (
               <Text category="h2" status="primary">

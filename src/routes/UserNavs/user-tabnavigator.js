@@ -51,19 +51,18 @@ export const UserTabNavigator = () => {
   const bottomState = useBottomNavigationState();
 
   return (
-    <Tab.Navigator tabBar={(props) => <BottomTabBar {...props} />}>
+    <Tab.Navigator tabBar={(props) => <BottomTabBar {...props} />} screenOptions={{headerShown: false}}>
       <Tab.Screen
         name="OrderNavigator"
-        options={{title: 'Order Khamang'}}
         component={OrderNavigator}
       />
       <Tab.Screen
         name="HistoryNavigator"
-        options={{title: 'Order History'}}
         component={HistoryNavigator}
+        options={{title: ''}}
       />
 
-      <Tab.Screen name="ProfileNavigator" component={ProfileNavigator} />
+      <Tab.Screen name="ProfileNavigator" component={ProfileNavigator} options={{title: ''}} />
     </Tab.Navigator>
   );
 };

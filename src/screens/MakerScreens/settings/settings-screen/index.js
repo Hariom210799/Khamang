@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, ScrollView} from 'react-native';
+import {StyleSheet, ScrollView, StatusBar, Platform} from 'react-native';
 import {
   TopNavigation,
   Layout,
@@ -11,6 +11,14 @@ import {
 import {useSelector, useDispatch} from 'react-redux';
 import {logUserOut} from '../../../../redux-store/actions';
 import {TouchableOpacity, View} from 'react-native';
+
+// ✅ Dynamic status bar padding - adapts to actual device
+const getTopPadding = () => {
+  if (Platform.OS === 'android') {
+    return (StatusBar.currentHeight || 25) + 10;
+  }
+  return 15; // iOS default
+};
 
 export default ({navigation}) => {
   const [darkMode, setDarkMode] = React.useState(false);
@@ -132,6 +140,7 @@ export default ({navigation}) => {
   return (
     <Layout style={styles.container}>
       <TopNavigation
+        style={{paddingLeft: 20, paddingTop: getTopPadding()}}
         title={(TextProps) => (
           <Text {...TextProps} category="h2" status="primary">
             Settings

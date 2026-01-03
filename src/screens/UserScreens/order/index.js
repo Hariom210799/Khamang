@@ -5,6 +5,9 @@ import {
   StyleSheet,
   ScrollView,
   RefreshControl,
+  SafeAreaView,
+  StatusBar,
+  Platform,
 } from 'react-native';
 import axios from 'react-native-axios';
 import {
@@ -49,6 +52,14 @@ function SearchIcon(props) {
     />
   );
 }
+
+// ✅ Dynamic status bar padding - adapts to actual device
+const getTopPadding = () => {
+  if (Platform.OS === 'android') {
+    return (StatusBar.currentHeight || 25) + 10;
+  }
+  return 15; // iOS default
+};
 
 const SLIDER_WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
@@ -123,7 +134,7 @@ function OrderScreen(props) {
   return (
     <Layout style={styles.container}>
       <TopNavigation
-        style={{paddingLeft: 20}}
+        style={{paddingLeft: 20, paddingTop: getTopPadding()}}
         title={(TextProps) => {
           return (
             <Text category="h2" status="primary">

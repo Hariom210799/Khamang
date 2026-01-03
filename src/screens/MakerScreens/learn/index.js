@@ -7,6 +7,8 @@ import {
   TouchableWithoutFeedback,
   FlatList,
   ActivityIndicator,
+  StatusBar,
+  Platform,
 } from 'react-native';
 import {
   Divider,
@@ -27,6 +29,14 @@ const ITEM_HEIGHT = Math.round((ITEM_WIDTH * 3) / 4);
 const {width: screenWidth} = Dimensions.get('window');
 
 //https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=bhendi%20masala&type=video&key=AIzaSyAKCTwZ4mUSfWGUSN0lMQStOydxIEzKgIE
+
+// ✅ Dynamic status bar padding - adapts to actual device
+const getTopPadding = () => {
+  if (Platform.OS === 'android') {
+    return (StatusBar.currentHeight || 25) + 10;
+  }
+  return 15; // iOS default
+};
 
 export default function Learn() {
   const [loading, setLoading] = React.useState(false);
@@ -104,7 +114,7 @@ export default function Learn() {
   return (
     <Layout style={styles.container}>
       <TopNavigation
-        // style={{paddingLeft: 20}}
+        style={{paddingLeft: 20, paddingTop: getTopPadding()}}
         title={(TextProps) => {
           return (
             <Text category="h2" status="primary">

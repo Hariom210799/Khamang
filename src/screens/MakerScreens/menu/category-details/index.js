@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useCallback, useMemo} from 'react';
-import {StyleSheet, TouchableOpacity, View, Image, Alert} from 'react-native';
+import {StyleSheet, TouchableOpacity, View, Image, Alert, StatusBar, Platform} from 'react-native';
 import {
   Button,
   Divider,
@@ -15,6 +15,14 @@ import {SLIDER_WIDTH} from '../../../../utils/dimensions';
 import {MoreVerticalIcon, AddIcon} from '../extras/icons';
 import axios from 'react-native-axios';
 import DishModal from './dishModal';
+
+// ✅ Dynamic status bar padding - adapts to actual device
+const getTopPadding = () => {
+  if (Platform.OS === 'android') {
+    return (StatusBar.currentHeight || 25) + 10;
+  }
+  return 15; // iOS default
+};
 
 function CategoryDetails(props) {
   const [dishModal, setDishModal] = useState(false);
@@ -260,7 +268,7 @@ function CategoryDetails(props) {
   return (
     <Layout style={styles.container}>
       <TopNavigation
-        style={styles.topNav}
+        style={[styles.topNav, {paddingTop: getTopPadding()}]}
         title={PageTitle}
         accessoryRight={EditMenuButton}
         accessoryLeft={BackButton}

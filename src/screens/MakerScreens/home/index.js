@@ -5,6 +5,9 @@ import {
   StyleSheet,
   ScrollView,
   RefreshControl,
+  SafeAreaView,
+  StatusBar,
+  Platform,
 } from 'react-native';
 import {useFocusEffect} from '@react-navigation/native';
 import {
@@ -26,6 +29,14 @@ const OrderIcon = (props) => {
 function SearchIcon(props) {
   return <Icon {...props} name="search-outline" pack="eva" />;
 }
+
+// ✅ Dynamic status bar padding - adapts to actual device
+const getTopPadding = () => {
+  if (Platform.OS === 'android') {
+    return (StatusBar.currentHeight || 25) + 10;
+  }
+  return 15; // iOS default
+};
 
 const Home = () => {
   const SLIDER_WIDTH = Dimensions.get('window').width;
@@ -397,9 +408,9 @@ const Home = () => {
   );
 
   return (
-    <Layout style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <TopNavigation
-        style={{paddingLeft: 20}}
+        style={{paddingLeft: 20, paddingTop: getTopPadding()}}
         title={(TextProps) => {
           return (
             <Text category="h2" status="primary">
@@ -415,7 +426,7 @@ const Home = () => {
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }>
-        <Layout style={{flex: 1}}>
+        <Layout style={{flex: 1, marginTop: 10}}>
           {orderData.orders.length > 0 ? (
             orderData.orders
               .filter(order => {
@@ -470,12 +481,12 @@ const Home = () => {
                 alignSelf: 'center',
                 marginTop: '50%',
               }}>
-              <Text category="h5">Waiting for Orders to Recieve...</Text>
+              <Text category="h5" style={{color: 'grey'}}>Waiting for Orders to Recieve...</Text>
             </Layout>
           )}
         </Layout>
       </ScrollView>
-    </Layout>
+    </SafeAreaView>
   );
 };
 

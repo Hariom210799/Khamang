@@ -49,28 +49,27 @@ export const MakerTabNavigator = () => {
   const bottomState = useBottomNavigationState();
 
   return (
-    <Tab.Navigator tabBar={(props) => <BottomTabBar {...props} />}>
+    <Tab.Navigator tabBar={(props) => <BottomTabBar {...props} />} screenOptions={{headerShown: false}}>
       <Tab.Screen
         name="InboxNavigator"
-        options={{title: 'Order Khamang'}}
         component={InboxNavigator}
       />
       <Tab.Screen
         name="MenuNavigator"
-        options={{title: 'Orders Received'}}
         component={MenuNavigator}
+        options={{title: ''}}
       />
       <Tab.Screen
         name="InsightsNavigator"
-        options={{title: 'Orders Received'}}
         component={InsightsNavigator}
+        options={{title: ''}}
       />
       <Tab.Screen
         name="LearnNavigator"
-        options={{title: 'Learn, Cook and Earn'}}
         component={LearnNavigator}
+        options={{title: ''}}
       />
-      <Tab.Screen name="SettingsNavigator" component={SettingsNavigator} />
+      <Tab.Screen name="SettingsNavigator" component={SettingsNavigator} options={{title: ''}} />
     </Tab.Navigator>
   );
 };
